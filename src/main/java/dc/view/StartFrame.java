@@ -28,7 +28,9 @@ public class StartFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	private JFrame parent;
 	public StartFrame() {
+		this.parent=null;
 		setResizable(false);
 		setBounds(100, 100, 375, 247);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -37,8 +39,9 @@ public class StartFrame extends JFrame {
 		JButton newShoppingButton = new JButton("\u00DAj v\u00E1s\u00E1rl\u00E1s");
 		newShoppingButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				NewShoppingPersonFrame nspf = new NewShoppingPersonFrame();
+				NewShoppingPersonFrame nspf = new NewShoppingPersonFrame(StartFrame.this);
 				nspf.setVisible(true);
+				StartFrame.this.setVisible(false);
 			}
 		});
 		newShoppingButton.setBounds(48, 73, 121, 52);

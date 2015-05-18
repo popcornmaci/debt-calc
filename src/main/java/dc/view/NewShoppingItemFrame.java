@@ -1,27 +1,27 @@
 package dc.view;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
 import dc.model.Person;
-
-import javax.swing.JScrollPane;
-import javax.swing.JCheckBox;
-import javax.swing.SwingConstants;
-
-import java.awt.GridLayout;
+import dc.model.Shopping;
 
 public class NewShoppingItemFrame extends JFrame {
 
@@ -30,6 +30,7 @@ public class NewShoppingItemFrame extends JFrame {
 	private List<JTextField> itemValue;
 	private List<JCheckBox[]> personCheckbox;
 	private List<JPanel> panels;
+	private JFrame parent;
 	/**
 	 * Create the frame.
 	 */
@@ -46,17 +47,49 @@ public class NewShoppingItemFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton = new JButton("M\u00E9gse");
+		JButton btnNewButton = new JButton("Vissza");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				parent.setVisible(true);
+				NewShoppingItemFrame.this.dispose();
 			}
 		});
 		btnNewButton.setBounds(236, 10, 89, 23);
 		contentPane.add(btnNewButton);
 		
+		JButton btnMgse = new JButton("M\u00E9gse");
+		btnMgse.setBounds(286, 32, 89, 23);
+		btnMgse.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFrame p = getParent();
+				while(p.getParent()!=null){
+					JFrame pparent = (JFrame) p.getParent();
+					p.dispose();
+					p=pparent;
+				}
+				p.setVisible(true);
+				NewShoppingItemFrame.this.dispose();
+			}
+		});
+		contentPane.add(btnMgse);
+		
 		JButton NextButton = new JButton("Tov\u00E1bb");
 		NextButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				Shopping sp= new Shopping(LocalDate.now());
+				for (int i = 0; i < itemValue.size(); i++) {
+					double value = Double.valueOf(itemValue.get(i).getText());
+					List<Person> lp= new ArrayList<Person>();
+					for (int j = 0; j < person.size(); j++) {
+						if(personCheckbox.get(i)[j].isSelected()){
+							lp.add(person.get(j));
+						}
+					}
+				sp.addItem(value, lp);
+				}
+				NewShoppingMoneyFrame nsmf = new NewShoppingMoneyFrame(NewShoppingItemFrame.this,sp);
+				nsmf.setVisible(true);
+				NewShoppingItemFrame.this.setVisible(false);
 			}
 		});
 		NextButton.setBounds(335, 10, 89, 23);
@@ -98,8 +131,9 @@ public class NewShoppingItemFrame extends JFrame {
 		contentPane.add(NewItemButton);
 	}
 
-	public NewShoppingItemFrame(List<Person> persons) {
+	public NewShoppingItemFrame(JFrame parent, List<Person> persons) {
 		this();
+		this.parent=parent;
 		person=persons;
 		
 	}
@@ -112,5 +146,8 @@ public class NewShoppingItemFrame extends JFrame {
 			
 		}
 		return jcb;
+	}
+	public JFrame getParent(){
+		return parent;
 	}
 }

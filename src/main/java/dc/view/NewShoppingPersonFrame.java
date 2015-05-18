@@ -14,7 +14,10 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import dc.model.Person;
+
 import javax.swing.JButton;
+
+import java.awt.Window;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -24,11 +27,13 @@ public class NewShoppingPersonFrame extends JFrame {
 	private List<Person> persons;
 	private List<JLabel> personNumber;
 	private List<JTextField> personName;
+	private JFrame parent;
 
 	/**
 	 * Create the frame.
 	 */
-	public NewShoppingPersonFrame() {
+	public NewShoppingPersonFrame(JFrame parent) {
+		this.parent=parent;
 		persons = new ArrayList<Person>();
 		personNumber = new ArrayList<JLabel>();
 		personName = new ArrayList<JTextField>();
@@ -100,9 +105,11 @@ public class NewShoppingPersonFrame extends JFrame {
 		personName.add(jt);
 		panel.add(jt);
 
-		JButton btnNewButton = new JButton("M\u00E9gse");
+		JButton btnNewButton = new JButton("Vissza");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				parent.setVisible(true);
+				NewShoppingPersonFrame.this.dispose();
 			}
 		});
 		btnNewButton.setBounds(236, 10, 89, 23);
@@ -117,11 +124,31 @@ public class NewShoppingPersonFrame extends JFrame {
 						persons.add(new Person(jt.getText()));
 					}
 				}
-				NewShoppingItemFrame nsif = new NewShoppingItemFrame(persons);
+				NewShoppingItemFrame nsif = new NewShoppingItemFrame(NewShoppingPersonFrame.this,persons);
 				nsif.setVisible(true);
+				NewShoppingPersonFrame.this.setVisible(false);
 			}
 		});
 		NextButton.setBounds(335, 10, 89, 23);
 		contentPane.add(NextButton);
+		
+		JButton btnMgse = new JButton("M\u00E9gse");
+		btnMgse.setBounds(286, 32, 89, 23);
+		btnMgse.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFrame p = getParent();
+				while(p.getParent()!=null){
+					JFrame pparent = (JFrame) p.getParent();
+					p.dispose();
+					p=pparent;
+				}
+				p.setVisible(true);
+				NewShoppingPersonFrame.this.dispose();
+			}
+		});
+		contentPane.add(btnMgse);
+	}
+	public JFrame getParent(){
+		return parent;
 	}
 }
