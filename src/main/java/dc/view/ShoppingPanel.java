@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 
 import dc.model.Shopping;
 
+@SuppressWarnings("serial")
 public class ShoppingPanel extends JPanel {
 	private Shopping sp;
 	private JCheckBox checkBox;

@@ -4,9 +4,11 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+@SuppressWarnings("serial")
 public class StartFrame extends JFrame {
 
 	/**
@@ -28,9 +30,7 @@ public class StartFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	private JFrame parent;
 	public StartFrame() {
-		this.parent=null;
 		setResizable(false);
 		setBounds(100, 100, 375, 247);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

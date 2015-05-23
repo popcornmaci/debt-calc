@@ -22,6 +22,7 @@ import dc.dao.ShoppingXmlDao;
 import dc.model.Person;
 import dc.model.Shopping;
 
+@SuppressWarnings("serial")
 public class NewShoppingMoneyFrame extends JFrame {
 	private class PersonPanel extends JPanel{
 		private Person p;
@@ -55,9 +56,6 @@ public class NewShoppingMoneyFrame extends JFrame {
 		public JTextField getJtf() {
 			return jtf;
 		}
-		public JLabel getJlbl() {
-			return jlbl;
-		}
 		
 	}
 	private Shopping sp;
@@ -67,8 +65,8 @@ public class NewShoppingMoneyFrame extends JFrame {
 	 * Create the frame.
 	 * @param  
 	 */
-	public NewShoppingMoneyFrame(JFrame parent, Shopping sp) {
-		this.sp = sp;
+	public NewShoppingMoneyFrame(JFrame parent, Shopping shp) {
+		this.sp = shp;
 		ppl = new ArrayList<NewShoppingMoneyFrame.PersonPanel>();
 		this.parent=parent;
 		setBounds(100, 100, 450, 300);

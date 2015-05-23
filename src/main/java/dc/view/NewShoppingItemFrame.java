@@ -23,6 +23,7 @@ import javax.swing.border.EmptyBorder;
 import dc.model.Person;
 import dc.model.Shopping;
 
+@SuppressWarnings("serial")
 public class NewShoppingItemFrame extends JFrame {
 
 	private JPanel contentPane;

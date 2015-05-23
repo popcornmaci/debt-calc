@@ -10,13 +10,14 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Color;
 
+@SuppressWarnings("serial")
 public class DebtPanel extends JPanel {
 	private Person p;
 	/**
 	 * Create the panel.
 	 */
-	public DebtPanel(Person p, Person p2) {
-		this.p=p;
+	public DebtPanel(Person pp, Person p2) {
+		this.p=pp;
 		setLayout(null);
 		this.setPreferredSize(new Dimension(400,30));
 		

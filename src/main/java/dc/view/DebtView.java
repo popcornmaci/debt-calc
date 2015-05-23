@@ -15,6 +15,7 @@ import javax.swing.JScrollPane;
 import dc.model.Person;
 import dc.model.Shopping;
 
+@SuppressWarnings("serial")
 public class DebtView extends JFrame {
 	private JFrame parent;
 	private List<Shopping> shl;
@@ -23,10 +24,10 @@ public class DebtView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public DebtView(JFrame parent, List<Shopping> shl, Person p) {
-		this.parent = parent;
-		this.shl = shl;
-		this.p = p;
+	public DebtView(JFrame fparent, List<Shopping> shpl, Person pe) {
+		this.parent = fparent;
+		this.shl = shpl;
+		this.p = pe;
 		setBounds(100, 100, 450, 300);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);

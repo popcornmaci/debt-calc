@@ -18,14 +18,13 @@ import dc.model.Person;
 
 import javax.swing.JButton;
 
-import java.awt.Window;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+@SuppressWarnings("serial")
 public class NewShoppingPersonFrame extends JFrame {
 
 	private JPanel contentPane;
-	private List<Person> persons;
 	private List<JLabel> personNumber;
 	private List<JTextField> personName;
 	private JFrame parent;
@@ -35,7 +34,6 @@ public class NewShoppingPersonFrame extends JFrame {
 	 */
 	public NewShoppingPersonFrame(JFrame parent) {
 		this.parent=parent;
-		persons = new ArrayList<Person>();
 		personNumber = new ArrayList<JLabel>();
 		personName = new ArrayList<JTextField>();
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

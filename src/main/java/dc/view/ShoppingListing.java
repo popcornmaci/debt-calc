@@ -1,17 +1,16 @@
 package dc.view;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -20,8 +19,7 @@ import dc.dao.ShoppingXmlDao;
 import dc.model.Person;
 import dc.model.Shopping;
 
-import javax.swing.JLabel;
-
+@SuppressWarnings("serial")
 public class ShoppingListing extends JFrame {
 	private List<Person> listp;
 	private ShoppingXmlDao sxdao;
@@ -54,7 +52,7 @@ public class ShoppingListing extends JFrame {
 		panel_1.add(panel_2, BorderLayout.NORTH);
 		panel_2.setLayout(new GridLayout(0,1,0,1));
 		
-		JComboBox comboBox = new JComboBox(new PersonComboModel(listp));
+		JComboBox<Person> comboBox = new JComboBox<Person>(new PersonComboModel(listp));
 		comboBox.setBounds(10, 18, 200, 20);
 		getContentPane().add(comboBox);
 		

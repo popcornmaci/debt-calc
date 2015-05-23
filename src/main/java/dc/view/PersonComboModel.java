@@ -7,6 +7,7 @@ import javax.swing.ComboBoxModel;
 
 import dc.model.Person;
 
+@SuppressWarnings("serial")
 public class PersonComboModel extends AbstractListModel<Person> implements
 		ComboBoxModel<Person> {
 	private List<Person> listp;
