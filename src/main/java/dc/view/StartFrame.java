@@ -35,8 +35,9 @@ public class StartFrame extends JFrame {
 		setBounds(100, 100, 375, 247);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
+		StartFrame.this.setTitle("Tartoz\u00E1s Kalkul\u00E1tor");
 		
-		JButton newShoppingButton = new JButton("\u00DAj v\u00E1s\u00E1rl\u00E1s");
+		JButton newShoppingButton = new JButton("\u00DAj v\u00E1s\u00E1rl\u00E1s felv\u00E9tele");
 		newShoppingButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				NewShoppingPersonFrame nspf = new NewShoppingPersonFrame(StartFrame.this);
@@ -44,15 +45,18 @@ public class StartFrame extends JFrame {
 				StartFrame.this.setVisible(false);
 			}
 		});
-		newShoppingButton.setBounds(48, 73, 121, 52);
+		newShoppingButton.setBounds(10, 73, 165, 52);
 		getContentPane().add(newShoppingButton);
 		
-		JButton loadShoppingButton = new JButton("V\u00E1s\u00E1rl\u00E1s bet\u00F6lt\u00E9se");
+		JButton loadShoppingButton = new JButton("Tartoz\u00E1s Kalkul\u00E1tor");
 		loadShoppingButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				ShoppingListing sl = new ShoppingListing(StartFrame.this);
+				sl.setVisible(true);
+				StartFrame.this.setVisible(false);
 			}
 		});
-		loadShoppingButton.setBounds(208, 73, 121, 52);
+		loadShoppingButton.setBounds(194, 73, 165, 52);
 		getContentPane().add(loadShoppingButton);
 
 	}

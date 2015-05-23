@@ -1,6 +1,7 @@
 package dc.model;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Person {
@@ -9,6 +10,16 @@ public class Person {
 	public Person(String name) {
 		this.name = name;
 		this.debt = new HashMap<Person, Double>();
+	}
+	public static Person from(Person p,List<Shopping> shl){
+		Person person = new Person(p.getName());
+		for (Shopping shopping : shl) {
+			Person ps = shopping.getPerson(person);
+			for(Person ps2 : ps.getDebt().keySet()){
+				person.addDebt(new Person(ps2.getName()), ps.getDebtTo(ps2));
+			}	
+		}
+		return person;
 	}
 	public void addDebt(Person p, Double d){
 		if(!debt.containsKey(p)){
@@ -77,5 +88,9 @@ public class Person {
 		} else if (!name.equals(other.name))
 			return false;
 		return true;
+	}
+	@Override
+	public String toString() {
+		return name;
 	}
 }

@@ -5,16 +5,16 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.time.LocalDate;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -42,6 +42,7 @@ public class NewShoppingItemFrame extends JFrame {
 		setBounds(100, 100, 450, 300);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
+		NewShoppingItemFrame.this.setTitle("\u00C1ruk megad\u00E1sa");
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -76,7 +77,7 @@ public class NewShoppingItemFrame extends JFrame {
 		JButton NextButton = new JButton("Tov\u00E1bb");
 		NextButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Shopping sp= new Shopping(LocalDate.now());
+				Shopping sp= new Shopping(LocalDateTime.now());
 				for (int i = 0; i < itemValue.size(); i++) {
 					double value = Double.valueOf(itemValue.get(i).getText());
 					List<Person> lp= new ArrayList<Person>();
@@ -84,6 +85,11 @@ public class NewShoppingItemFrame extends JFrame {
 						if(personCheckbox.get(i)[j].isSelected()){
 							lp.add(person.get(j));
 						}
+						sp.addPerson(person.get(j), 0.0);
+					}
+					if(lp.isEmpty()){
+						JOptionPane.showMessageDialog(null, "Minden sorban pipálj be egyet!","Hiba", JOptionPane.ERROR_MESSAGE);
+						return;
 					}
 				sp.addItem(value, lp);
 				}
@@ -116,6 +122,17 @@ public class NewShoppingItemFrame extends JFrame {
 				jp.setPreferredSize(new Dimension(1000,30));
 				JCheckBox[] jcb = generateCheckbox(jp);
 				JTextField jt = new JTextField();
+				jt.setText("0.0");
+				jt.addKeyListener(new KeyAdapter() {
+					public void keyTyped(KeyEvent e){
+						char c = e.getKeyChar();
+						if((c < '0'|| c>'9') && c!='\b'){
+							if(c!='.'){
+								e.consume();
+							}
+						}
+					}
+				});
 				jt.setBounds(10, 11, 50, 20);
 				panel_2.add(jp);
 				panels.add(jp);
@@ -141,7 +158,7 @@ public class NewShoppingItemFrame extends JFrame {
 		JCheckBox[] jcb= new JCheckBox[person.size()];
 		for (int i = 0; i < jcb.length; i++) {
 			jcb[i]=new JCheckBox(person.get(i).getName());
-			jcb[i].setBounds(66+(85*i), 10, 83, 20);
+			jcb[i].setBounds(66+(97*i), 10, 95, 20);
 			jp.add(jcb[i]);
 			
 		}
