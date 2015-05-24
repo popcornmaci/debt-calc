@@ -8,7 +8,7 @@ import dc.model.Shopping;
 /**
  * Dao interfész
  * metódusokat szolgáltat az adatok elérésére.
- * @author Tímea
+ * @author Kökéndy Tímea
  *
  */
 public interface ShoppingDao {

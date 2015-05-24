@@ -13,7 +13,7 @@ import java.util.Map.Entry;
 /**
  * 
  * Vásárlás reprezentálására szolgáló osztály.
- * @author Tímea
+ * @author Kökéndy Tímea
  *
  */
 public class Shopping {
@@ -159,4 +159,19 @@ public class Shopping {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd kk:mm",Locale.US);
 		return date.format(dtf);
 	}
+	@Override
+	public int hashCode() {
+		int result = 1;
+		result =date.hashCode();
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Shopping){
+			Shopping s=(Shopping) obj;
+			return date.equals(s.date);
+		}
+		return false;
+	}
+	
 }

@@ -30,7 +30,7 @@ import dc.model.Person;
 import dc.model.Shopping;
 /**
  * Ez az osztály xml fájlban történő olvasást, írást implementálja.
- * @author Tímea
+ * @author Kökéndy Tímea
  *
  */
 public class ShoppingXmlDao implements ShoppingDao {
@@ -39,11 +39,12 @@ public class ShoppingXmlDao implements ShoppingDao {
 	 */
 	private Document doc;
 	/**
-	 * Példányosít egy {@code ShoppingXmlDao} objektumot az alap elérési útvonallal (userhome).
+	 * 
+	 * @param path
 	 */
-	public ShoppingXmlDao() {
-		File dir = new File(System.getProperty("user.home"), "debt-calc");
-		File file = new File(dir, "shoppings.xml");
+	public ShoppingXmlDao(File path){
+		File dir = path.getParentFile();
+		File file = path;
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		try {
 			DocumentBuilder builder = dbf.newDocumentBuilder();
@@ -58,6 +59,12 @@ public class ShoppingXmlDao implements ShoppingDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	/**
+	 * Példányosít egy {@code ShoppingXmlDao} objektumot az alap elérési útvonallal (userhome).
+	 */
+	public ShoppingXmlDao() {
+		this(new File(new File(System.getProperty("user.home"), "debt-calc"), "shoppings.xml"));
 	}
 
 	@Override
