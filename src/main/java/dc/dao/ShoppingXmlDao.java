@@ -1,5 +1,26 @@
 package dc.dao;
 
+/*
+ * #%L
+ * Debt Calculator
+ * %%
+ * Copyright (C) 2015 Faculty of Informatics, University of Debrecen
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
+
+
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -21,6 +42,8 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -39,8 +62,12 @@ public class ShoppingXmlDao implements ShoppingDao {
 	 */
 	private Document doc;
 	/**
-	 * 
-	 * @param path
+	 * ShoppingXmlDao loggere.
+	 */
+	private static Logger logger = LoggerFactory.getLogger(ShoppingXmlDao.class);
+	/**
+	 * Példányosít egy {@code ShoppingXmlDao} objektumot egy File alapján.
+	 * @param path a File
 	 */
 	public ShoppingXmlDao(File path){
 		File dir = path.getParentFile();
@@ -140,9 +167,11 @@ public class ShoppingXmlDao implements ShoppingDao {
 
 		try {
 			writeXml();
+			logger.info("A vásárlás sikeresen be lett szúrva.");
 			return true;
 		} catch (TransformerException e) {
 			e.printStackTrace();
+			logger.error("A beszúrás sikertelen volt.");
 		}
 		return false;
 	}
@@ -174,6 +203,7 @@ public class ShoppingXmlDao implements ShoppingDao {
 			}
 		}
 		List<Person> listp= new ArrayList<Person>(set);
+		logger.info("{} db személy lett beolvasva",listp.size());
 		return listp;
 	}
 
@@ -218,9 +248,11 @@ public class ShoppingXmlDao implements ShoppingDao {
 						p.addDebt(p2, -d);
 					}
 				}
+				logger.info("A vásárlás sikeresen kiolvasva");
 				return sp;
 			}
 		}
+		logger.info("Nincs ilye dátumú vásárlás");
 		return null;
 	}
 	@Override
@@ -236,6 +268,7 @@ public class ShoppingXmlDao implements ShoppingDao {
 				listsp.add(sp);
 			}
 		}
+		logger.info("{} db vásárlás lett beolvasva",listsp.size());
 		return listsp;
 	}
 

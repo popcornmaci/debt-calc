@@ -1,8 +1,32 @@
 package dc.view;
 
+/*
+ * #%L
+ * Debt Calculator
+ * %%
+ * Copyright (C) 2015 Faculty of Informatics, University of Debrecen
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
+
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -14,12 +38,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import dc.model.Person;
-
-import javax.swing.JButton;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class NewShoppingPersonFrame extends JFrame {
@@ -28,6 +50,7 @@ public class NewShoppingPersonFrame extends JFrame {
 	private List<JLabel> personNumber;
 	private List<JTextField> personName;
 	private JFrame parent;
+	private static Logger logger = LoggerFactory.getLogger(NewShoppingPersonFrame.class);
 
 	/**
 	 * Create the frame.
@@ -36,7 +59,7 @@ public class NewShoppingPersonFrame extends JFrame {
 		this.parent=parent;
 		personNumber = new ArrayList<JLabel>();
 		personName = new ArrayList<JTextField>();
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		NewShoppingPersonFrame.this.setTitle("Szem\u00E9lyek hozz\u00E1ad\u00E1sa");
 		contentPane = new JPanel();
@@ -136,11 +159,13 @@ public class NewShoppingPersonFrame extends JFrame {
 				}
 				if(persons.size()!=(Integer)spinner.getValue()){
 					JOptionPane.showMessageDialog(null, "Hibás név!","Hiba", JOptionPane.ERROR_MESSAGE);
+					logger.error("Érvénytelen művelet!");
 					return;
 				}
 				NewShoppingItemFrame nsif = new NewShoppingItemFrame(NewShoppingPersonFrame.this,persons);
 				nsif.setVisible(true);
 				NewShoppingPersonFrame.this.setVisible(false);
+				logger.info("Következő frame");
 			}
 		});
 		NextButton.setBounds(335, 10, 89, 23);
