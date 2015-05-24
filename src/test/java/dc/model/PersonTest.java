@@ -1,9 +1,10 @@
 package dc.model;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
+import dc.model.Person;
 
 public class PersonTest {
 	Person v;
@@ -11,7 +12,7 @@ public class PersonTest {
 	
 	@Before
 	public void setUp(){
-		v= new Person("VérPistike");
+		v = new Person("VérPistike");
 		p = new Person("Petike");
 	}
 	
