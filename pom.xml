@@ -75,6 +75,31 @@
 				<artifactId>cobertura-maven-plugin</artifactId>
 				<version>2.7</version>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.10.3</version>
+				<reportSets>
+					<reportSet>
+						<id>html</id>
+						<reports>
+							<report>javadoc</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+				<configuration>
+					<excludePackageNames>dc.view</excludePackageNames>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>2.15</version>
+				<configuration>
+					<configLocation>${basedir}/config/checkstyle.xml</configLocation>
+					<excludes>dc/view/*</excludes>
+				</configuration>
+			</plugin>
 		</plugins>
 	</reporting>
 </project>

@@ -28,10 +28,19 @@ import org.xml.sax.SAXException;
 
 import dc.model.Person;
 import dc.model.Shopping;
-
+/**
+ * Ez az osztály xml fájlban történő olvasást, írást implementálja.
+ * @author Tímea
+ *
+ */
 public class ShoppingXmlDao implements ShoppingDao {
+	/**
+	 * A forrás dokumentum.
+	 */
 	private Document doc;
-
+	/**
+	 * Példányosít egy {@code ShoppingXmlDao} objektumot az alap elérési útvonallal (userhome).
+	 */
 	public ShoppingXmlDao() {
 		File dir = new File(System.getProperty("user.home"), "debt-calc");
 		File file = new File(dir, "shoppings.xml");
@@ -130,12 +139,10 @@ public class ShoppingXmlDao implements ShoppingDao {
 		}
 		return false;
 	}
-
-	@Override
-	public boolean updateShopping(Shopping sp) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	/**
+	 * Ez a metódus kiírja a fájlba a felépített dokumentumot.
+	 * @throws TransformerException ha hiba történik a kiírás során
+	 */
 	private void writeXml() throws TransformerException{
 
 		TransformerFactory tff = TransformerFactory.newInstance();
