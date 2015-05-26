@@ -55,6 +55,7 @@ public class NewShoppingMoneyFrame extends JFrame {
 		private JLabel jlbl;
 
 		public PersonPanel(Person p) {
+			setResizable(false);
 			this.p = p;
 			this.setLayout(null);
 			this.setPreferredSize(new Dimension(400, 30));

@@ -56,6 +56,7 @@ public class NewShoppingPersonFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public NewShoppingPersonFrame(JFrame parent) {
+		setResizable(false);
 		this.parent=parent;
 		personNumber = new ArrayList<JLabel>();
 		personName = new ArrayList<JTextField>();

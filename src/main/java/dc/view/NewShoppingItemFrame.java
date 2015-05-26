@@ -63,6 +63,7 @@ public class NewShoppingItemFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public NewShoppingItemFrame() {
+		setResizable(false);
 		person = new ArrayList<Person>();
 		itemValue = new ArrayList<JTextField>();
 		personCheckbox = new ArrayList<JCheckBox[]>();

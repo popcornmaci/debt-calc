@@ -46,6 +46,7 @@ public class DebtView extends JFrame {
 	 * Create the frame.
 	 */
 	public DebtView(JFrame fparent, List<Shopping> shpl, Person pe) {
+		setResizable(false);
 		this.parent = fparent;
 		this.shl = shpl;
 		this.p = pe;

@@ -17,6 +17,10 @@
 			<timezone>+1</timezone>
 		</developer>
 	</developers>
+	<scm>
+		<connection>scm:git:https://github.com/popcornmaci/debt-calc.git</connection>
+		<url>https://github.com/popcornmaci/debt-calc</url>
+	</scm>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -139,6 +143,27 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<version>1.4</version>
+				<executions>
+					<execution>
+						<id>enforce-version</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<configuration>
+							<rules>
+							<requireJavaVersion>
+								<version>1.8</version>
+							</requireJavaVersion>
+							</rules>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 	<reporting>
@@ -169,7 +194,7 @@
 				<artifactId>maven-checkstyle-plugin</artifactId>
 				<version>2.15</version>
 				<configuration>
-					<configLocation>${basedir}/config/checkstyle.xml</configLocation>
+					<configLocation>${basedir}/src/main/resources/checkstyle.xml</configLocation>
 					<excludes>dc/view/*</excludes>
 				</configuration>
 			</plugin>
