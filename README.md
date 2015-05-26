@@ -12,10 +12,13 @@ Ez az alkalmazás lehetőséget biztosít arra, hogy egy vagy több vásárlás 
 
 ##Futtatás
 project könyvtárából a következő parancsokkal:
+
 - Fordítás:
+
         $ mvn package
 - Futtatás:
+
         $ java -jar target/debt-calc-jar-with-dependencies.jar
 vagy
-        $ mvn exec:java -Dexec.mainClass=dc.view.StartFrame
 
+        $ mvn exec:java -Dexec.mainClass=dc.view.StartFrame
