@@ -22,6 +22,7 @@ package dc.view;
 
 
 import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -46,7 +47,8 @@ public class DebtView extends JFrame {
 	 * Create the frame.
 	 */
 	public DebtView(JFrame fparent, List<Shopping> shpl, Person pe) {
-		setResizable(false);
+		setResizable(false);		
+		Font f = new Font("tahoma", Font.BOLD, 10);
 		this.parent = fparent;
 		this.shl = shpl;
 		this.p = pe;
@@ -58,6 +60,7 @@ public class DebtView extends JFrame {
 		JLabel lblNewLabel = new JLabel(String.format(
 				"%s tartozik a k\u00F6vetkez\u0151 embereknek:", p.getName()));
 		lblNewLabel.setBounds(10, 32, 264, 14);
+		lblNewLabel.setFont(f);
 		getContentPane().add(lblNewLabel);
 
 		JScrollPane scrollPane = new JScrollPane();

@@ -23,6 +23,7 @@ package dc.view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -63,7 +64,7 @@ public class NewShoppingItemFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public NewShoppingItemFrame() {
-		setResizable(false);
+		setResizable(false);		
 		person = new ArrayList<Person>();
 		itemValue = new ArrayList<JTextField>();
 		personCheckbox = new ArrayList<JCheckBox[]>();
@@ -222,12 +223,13 @@ public class NewShoppingItemFrame extends JFrame {
 		person = persons;
 
 	}
-
+	Font f = new Font("tahoma", Font.BOLD, 10);
 	private JCheckBox[] generateCheckbox(JPanel jp) {
 		JCheckBox[] jcb = new JCheckBox[person.size()];
 		for (int i = 0; i < jcb.length; i++) {
 			jcb[i] = new JCheckBox(person.get(i).getName());
 			jcb[i].setBounds(66 + (97 * i), 10, 95, 20);
+			jcb[i].setFont(f);
 			jp.add(jcb[i]);
 
 		}

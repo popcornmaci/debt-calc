@@ -51,7 +51,7 @@ public class ShoppingListing extends JFrame {
 	 * Create the frame.
 	 */
 	public ShoppingListing(JFrame parent) {
-		setResizable(false);
+		setResizable(false);		
 		sxdao= new ShoppingXmlDao();
 		listp = sxdao.getAllPerson();
 		this.parent=parent;

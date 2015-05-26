@@ -21,6 +21,7 @@ package dc.view;
  */
 
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -56,7 +57,8 @@ public class NewShoppingPersonFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public NewShoppingPersonFrame(JFrame parent) {
-		setResizable(false);
+		setResizable(false);		
+		Font f = new Font("tahoma", Font.BOLD, 10);
 		this.parent=parent;
 		personNumber = new ArrayList<JLabel>();
 		personName = new ArrayList<JTextField>();
@@ -70,6 +72,7 @@ public class NewShoppingPersonFrame extends JFrame {
 
 		JLabel lblSzemlyekSzma = new JLabel("Szem\u00E9lyek sz\u00E1ma:");
 		lblSzemlyekSzma.setBounds(10, 11, 121, 21);
+		lblSzemlyekSzma.setFont(f);
 		contentPane.add(lblSzemlyekSzma);
 
 		JPanel panel = new JPanel();
@@ -90,6 +93,7 @@ public class NewShoppingPersonFrame extends JFrame {
 					JTextField jt = new JTextField();
 					JLabel lblPersons = new JLabel(String.format(
 							"%d. Szem\u00E9ly:", x));
+					lblPersons.setFont(f);
 					if (x > 5) {
 						jt.setBounds(285, 11 + 35 * (x - 6), 120, 20);
 						lblPersons.setBounds(210, 11 + 35 * (x - 6), 75, 20);
@@ -120,6 +124,7 @@ public class NewShoppingPersonFrame extends JFrame {
 		contentPane.add(lblNevek);
 
 		JLabel lblPersons = new JLabel("1. Szem\u00E9ly:");
+		lblPersons.setFont(f);
 		lblPersons.setBounds(10, 11, 70, 20);
 		personNumber.add(lblPersons);
 		panel.add(lblPersons);
@@ -131,6 +136,7 @@ public class NewShoppingPersonFrame extends JFrame {
 
 		JLabel lblPersons2 = new JLabel("2. Szem\u00E9ly:");
 		lblPersons2.setBounds(10, 11+35, 70, 20);
+		lblPersons2.setFont(f);
 		personNumber.add(lblPersons2);
 		panel.add(lblPersons2);
 
@@ -171,22 +177,6 @@ public class NewShoppingPersonFrame extends JFrame {
 		});
 		NextButton.setBounds(335, 10, 89, 23);
 		contentPane.add(NextButton);
-		
-		JButton btnMgse = new JButton("M\u00E9gse");
-		btnMgse.setBounds(286, 32, 89, 23);
-		btnMgse.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JFrame p = getParent();
-				while(p.getParent()!=null){
-					JFrame pparent = (JFrame) p.getParent();
-					p.dispose();
-					p=pparent;
-				}
-				p.setVisible(true);
-				NewShoppingPersonFrame.this.dispose();
-			}
-		});
-		contentPane.add(btnMgse);
 	}
 	public JFrame getParent(){
 		return parent;

@@ -55,7 +55,6 @@ public class NewShoppingMoneyFrame extends JFrame {
 		private JLabel jlbl;
 
 		public PersonPanel(Person p) {
-			setResizable(false);
 			this.p = p;
 			this.setLayout(null);
 			this.setPreferredSize(new Dimension(400, 30));
@@ -108,6 +107,7 @@ public class NewShoppingMoneyFrame extends JFrame {
 	 * @param
 	 */
 	public NewShoppingMoneyFrame(JFrame parent, Shopping shp) {
+		setResizable(false);		
 		this.sp = shp;
 		ppl = new ArrayList<NewShoppingMoneyFrame.PersonPanel>();
 		this.parent = parent;
@@ -196,12 +196,12 @@ public class NewShoppingMoneyFrame extends JFrame {
 		getContentPane().add(btnMgse);
 
 		JLabel lblsszegek = new JLabel("Összegek:");
-		lblsszegek.setBounds(10, 36, 106, 14);
+		lblsszegek.setBounds(10, 35, 106, 18);
 		getContentPane().add(lblsszegek);
 
 		JLabel lblVgsszeg = new JLabel("Végösszeg: "
 				+ String.valueOf(sp.getSum()));
-		lblVgsszeg.setBounds(10, 14, 216, 14);
+		lblVgsszeg.setBounds(10, 14, 216, 18);
 		getContentPane().add(lblVgsszeg);
 	}
 

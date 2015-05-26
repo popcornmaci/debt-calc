@@ -53,7 +53,7 @@ public class StartFrame extends JFrame {
 	 */
 	public StartFrame() {
 		setResizable(false);
-		Font f = new Font("tahoma", Font.PLAIN, 15);
+		Font f = new Font("tahoma", Font.PLAIN, 11);
 		setBounds(100, 100, 375, 247);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
